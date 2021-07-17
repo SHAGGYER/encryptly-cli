@@ -52,7 +52,7 @@ authentication server:
 1. Popup
 2. Page redirect
 
-_Popup Instructions_
+_METHOD 1: Popup_
 
 Your client should open a window using javascript.
 ```javascript
@@ -138,7 +138,7 @@ exports.oauthLogin = async (req, res) => {
 }
 ```
 
-_Page Redirect Instructions_
+_METHOD 2: Page Redirect_
 
 After a successful login, users will be redirected to the
 specified redirect URL. This can be useful when the user
