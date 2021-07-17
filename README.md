@@ -46,12 +46,14 @@ ENCRYPTLY_SERVER_URL=http://localhost:5001
 ```
 
 _What to do after successful login_
+
 There are two ways your users will be redirected to
 authentication server:
 1. Popup
 2. Page redirect
 
 _Popup Instructions_
+
 Your client should open a window using javascript.
 ```javascript
 // STEP 1: Create popup (client side)
@@ -133,6 +135,7 @@ exports.oauthLogin = async (req, res) => {
 ```
 
 _Page Redirect Instructions_
+
 After a successful login, users will be redirected to the
 specified redirect URL. This can be useful when the user
 is visiting your app on mobile
