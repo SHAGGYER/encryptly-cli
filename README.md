@@ -66,7 +66,11 @@ const win = window.open(url, "auth", "width=600,height=600");
 // STEP 2: Setup event listener (client side)
 window.addEventListener("message", async (event) => {
     if (event.data.token) {
+        
         // After successful login, "event.data.token" will be available
+        // NOTE: The following "verificationUrl" is a route on
+        // YOUR app's server, NOT the authentication server
+        
         const verificationUrl = "/api/auth/oauth/popup/login?token=";
         const { data } = await axios.post(
             verificationUrl + event.data.token,
@@ -108,7 +112,7 @@ exports.oauthLogin = async (req, res) => {
         return res.sendStatus(401);
     }
 
-    // User object
+    // User object received from authentication server
     const { _id, displayName, email, firstName, lastName } = response.user;
 
     // Handle retrieving or adding the user to your own database
@@ -156,6 +160,20 @@ const url = authServerUrl + "/auth/" + type
 // query parameter
 
 // STEP 2: Verify token after successful login (server side)
-// This can be done using the same controller method as for popup
-// in STEP 3 for popup method
+// This can be done using the same controller method as
+// in STEP 3 for popup method, except that you
+// will need to redirect to your frontend
+
+// Example
+// ...
+
+const jwtUserData = {
+    userId: user._id,
+    userAccessLevel: user.accessLevel,
+};
+const jwtToken = jwt.sign(jwtUserData, process.env.JWT_SECRET);
+let redirectUrl = req.query.redirectUrl ? req.query.redirectUrl : "/";
+redirectUrl = redirectUrl + "?token=" + jwtToken;
+
+return res.redirect(redirectUrl);
 ```
