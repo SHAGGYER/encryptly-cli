@@ -1,0 +1,21 @@
+{
+  "name": "encryptly-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "encryptly-cli": "./bin/index.js"
+  },
+  "keywords": [],
+  "author": "Mikolaj Marciniak",
+  "license": "ISC",
+  "dependencies": {
+    "boxen": "^5.0.1",
+    "chalk": "^4.1.1",
+    "encryptly-auth-sdk": "^1.0.2",
+    "yargs": "^17.0.1"
+  }
+}
