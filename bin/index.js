@@ -62,7 +62,10 @@ generateApp({serverUrl, redirectUrl, name, url})
                 response.app.clientId +
                 "\n" +
                 "Client Secret: " +
-                response.app.clientSecret
+                response.app.clientSecret +
+                "\n" +
+                "Auth Server URL: " +
+                serverUrl
             ), {
                 padding: 1,
                 borderColor: "green",
