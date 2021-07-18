@@ -1,6 +1,6 @@
 {
   "name": "encryptly-cli",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,10 @@
   },
   "bin": {
     "encryptly-cli": "./bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miko1991/encryptly-cli"
   },
   "keywords": [],
   "author": "Mikolaj Marciniak",
