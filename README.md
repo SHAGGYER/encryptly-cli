@@ -1,27 +1,27 @@
 # encryptly-cli
 ### CLI for generating apps for encryptly.net authentication service
 
-_Installing and updating the CLI_
+_Installing and updating the CLI (server side)_
 ```
 npm i encryptly-cli@latest -g
 ```
 
-_Installing and updating the SDK_
+_Installing and updating the SDK (server side)_
 ```
-npm i encryptly-auth-sdk
+npm i encryptly-auth-sdk@latest
 
 or 
 
-yarn add encryptly-auth-sdk
+yarn add encryptly-auth-sdk@latest
 ```
 
-_Installing and updating the client_
+_Installing and updating the client (client side)_
 ```
-npm i encryptly-client
+npm i encryptly-client@latest
 
 or 
 
-yarn add encryptly-client
+yarn add encryptly-client@latest
 ```
 
 _Usage_
@@ -65,9 +65,9 @@ _METHOD 1: Popup_
 
 Your client should open a window using javascript.
 ```javascript
+// STEP 1: Create popup (client side)
 import { createPopup } from "encryptly-client";
 
-// STEP 1: Create popup (client side)
 const serverUrl = "https://auth.encryptly.net";
 const clientId = "<YOUR GENERATED CLIENT ID>";
 const type = "login"; // or "register"
@@ -137,9 +137,9 @@ specified redirect URL. This can be useful when the user
 is visiting your app on mobile
 
 ```javascript
+// STEP 1: Redirect user to authentication server (client side)
 import { redirectToAuthServer } from "encryptly-client";
 
-// STEP 1: Redirect user to authentication server (client side)
 const serverUrl = "https://auth.encryptly.net";
 const clientId = "<YOUR GENERATED CLIENT ID>";
 const type = "login"; // or "register"

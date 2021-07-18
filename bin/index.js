@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 const yargs = require("yargs");
-const {generateApp} = require("encryptly-auth-sdk")
+const {generateApp} = require("../lib/index")
 const chalk = require('chalk');
 const boxen = require('boxen');
 const {isValidHttpUrl} = require("../utils/index")
