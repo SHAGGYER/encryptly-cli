@@ -68,10 +68,9 @@ Your client should open a window using javascript.
 import { createPopup } from "encryptly-client";
 
 // STEP 1: Create popup (client side)
-const authServerUrl = "https://auth.encryptly.net";
+const serverUrl = "https://auth.encryptly.net";
 const clientId = "<YOUR GENERATED CLIENT ID>";
 const type = "login"; // or "register"
-const url = authServerUrl + "/auth/" + type + "?clientId=" + clientId;
 createPopup({serverUrl, clientId, type}, token => handleEncryptlyResponse(token))
 
 // You will need to create "handleEncryptlyResponse" function
