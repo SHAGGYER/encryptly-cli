@@ -143,7 +143,13 @@ import { redirectToAuthServer } from "encryptly-client";
 const serverUrl = "https://auth.encryptly.net";
 const clientId = "<YOUR GENERATED CLIENT ID>";
 const type = "login"; // or "register"
-const redirectUrl = "<YOUR APP'S SERVER REDIRECT URL>"
+// NOTE: the following "redirectUrl" is NOT the
+// --redirect-url option from the CLI.
+// It is most likely the current page that your
+// user is visiting, or any other page on the client
+// that you want your users to be redirected to
+// after successful login
+const redirectUrl = "<URL THAT YOUR USERS WILL BE REDIRECTED TO>"
 redirectToAuthServer({serverUrl, clientId, type, redirectUrl})
 
 // The only difference from the popup method
