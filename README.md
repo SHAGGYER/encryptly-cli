@@ -15,6 +15,15 @@ or
 yarn add encryptly-auth-sdk
 ```
 
+_Installing and updating the client_
+```
+npm i encryptly-client
+
+or 
+
+yarn add encryptly-client
+```
+
 _Usage_
 ```
 encryptly-cli generate:app 
@@ -56,42 +65,26 @@ _METHOD 1: Popup_
 
 Your client should open a window using javascript.
 ```javascript
+import { createPopup } from "encryptly-client";
+
 // STEP 1: Create popup (client side)
 const authServerUrl = "https://auth.encryptly.net";
 const clientId = "<YOUR GENERATED CLIENT ID>";
 const type = "login"; // or "register"
 const url = authServerUrl + "/auth/" + type + "?clientId=" + clientId;
-const win = window.open(url, "auth", "width=600,height=600");
+createPopup({serverUrl, clientId, type}, token => handleEncryptlyResponse(token))
 
-// STEP 2: Setup event listener (client side)
-window.addEventListener("message", async (event) => {
-    if (event.data.token) {
-        
-        // After successful login, "event.data.token" will be available
-        // NOTE: The following "verificationUrl" is a route on
-        // YOUR app's server, NOT the authentication server
-        
-        const verificationUrl = "/api/auth/oauth/popup/login?token=";
-        const { data } = await axios.post(
-            verificationUrl + event.data.token,
-        );
-        
-        // The above API call should handle logging in the user
-        // to your app. 
-        // Instructions on how to verify the token
-        // received from "event.data.token" will be
-        // in Step 3
+// You will need to create "handleEncryptlyResponse" function
+// or whatever you want to call it
+// Next step involves verifying the token from "createPopup" response
 
-        win.close();
-    }
-});
-
-// STEP 3: Verify token (server side)
+// STEP 2: Verify token (server side)
 // Example: NodeJS express auth controller
 
 const { checkToken } = require("encryptly-auth-sdk");
 
 exports.oauthLogin = async (req, res) => {
+    // If you passed the token using ?token=<TOKEN>
     if (!req.query.token) {
         return res.status(400).send({ error: "No token provided" });
     }
@@ -145,26 +138,24 @@ specified redirect URL. This can be useful when the user
 is visiting your app on mobile
 
 ```javascript
+import { redirectToAuthServer } from "encryptly-client";
 
 // STEP 1: Redirect user to authentication server (client side)
-const authServerUrl = "https://auth.encryptly.net";
+const serverUrl = "https://auth.encryptly.net";
 const clientId = "<YOUR GENERATED CLIENT ID>";
 const type = "login"; // or "register"
 const redirectUrl = "<YOUR APP'S SERVER REDIRECT URL>"
-const url = authServerUrl + "/auth/" + type 
-    + "?clientId=" + clientId 
-    + "&redirectUrl=" + redirectUrl;
+redirectToAuthServer({serverUrl, clientId, type, redirectUrl})
 
 // The only difference from the popup method
-// is that here you specify "redirectUrl" 
-// query parameter
+// is that here you specify "redirectUrl"
 
 // STEP 2: Verify token after successful login (server side)
 // This can be done using the same controller method as
-// in STEP 3 for popup method, except that you
+// in STEP 2 for popup method, except that you
 // will need to redirect to your frontend
 
-// Example
+// Example (oauth login controller method)
 // ...
 
 const jwtUserData = {
