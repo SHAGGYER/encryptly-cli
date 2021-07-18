@@ -2,27 +2,27 @@
 ### CLI for generating apps for encryptly.net authentication service
 
 _Installing and updating the CLI (server side)_
+
 ```
 npm i encryptly-cli@latest -g
 ```
 
-_Installing and updating the SDK (server side)_
-```
-npm i encryptly-auth-sdk@latest
+_Encryptly SDK_
 
-or 
+This package is used on server, and provides functionality
+for verifying the received token after your users'
+successful login
 
-yarn add encryptly-auth-sdk@latest
-```
+[https://www.npmjs.com/package/encryptly-auth-sdk](https://www.npmjs.com/package/encryptly-auth-sdk)
 
-_Installing and updating the client (client side)_
-```
-npm i encryptly-client@latest
+_Encryptly Client_
 
-or 
+This package is used in the client, and provides functionality
+for connecting to Encryptly Authentication Service in order to
+log in the user.
 
-yarn add encryptly-client@latest
-```
+[https://www.npmjs.com/package/encryptly-client](https://www.npmjs.com/package/encryptly-client)
+
 
 _Usage_
 ```
